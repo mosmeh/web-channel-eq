@@ -56,6 +56,7 @@ export class EQ {
                 (LOG_MAX_FREQ - LOG_MIN_FREQ) * f + LOG_MIN_FREQ
             );
         }
+        this._updateFreqResponse();
     }
 
     get input() {
