@@ -141,7 +141,7 @@ function drawCurve() {
 }
 
 function draw() {
-    canvasCtx.font = 'bold 13px sans-serif';
+    canvasCtx.font = 'bold 14px Inter';
     canvasCtx.textAlign = 'center';
 
     canvasCtx.fillStyle = BG_COLOR;

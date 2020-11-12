@@ -50,9 +50,13 @@ body {
     background-color: #282828;
     overflow: hidden;
 }
+.device canvas {
+    border-bottom: 1px solid #505050;
+}
 .device .content div {
     padding: 7px;
     height: 31px;
+    line-height: 14px;
 }
 .device .frequency {
     display: inline-block;
