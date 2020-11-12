@@ -67,6 +67,9 @@ eq.connect(audioCtx.destination);
 // visualization
 
 const canvasCtx = canvas.getContext('2d');
+canvas.width *= window.devicePixelRatio;
+canvas.height *= window.devicePixelRatio;
+canvasCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
 
 function dbToY(db) {
     return (height / 2) * (1 - db / MAX_AMP_DB);

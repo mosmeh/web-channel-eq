@@ -51,6 +51,8 @@ body {
     overflow: hidden;
 }
 .device canvas {
+    width: 358px;
+    height: 121px;
     border-bottom: 1px solid #505050;
 }
 .device .content div {
