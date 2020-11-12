@@ -64,10 +64,14 @@ eq.connect(audioCtx.destination);
 
 // visualization
 
-const canvasCtx = canvas.getContext('2d');
 canvas.width *= window.devicePixelRatio;
 canvas.height *= window.devicePixelRatio;
+
+const canvasCtx = canvas.getContext('2d');
 canvasCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+canvasCtx.lineCap = 'square';
+canvasCtx.font = 'bold 14px Inter';
+canvasCtx.textAlign = 'center';
 
 function dbToY(db) {
     return (height / 2) * (1 - db / MAX_AMP_DB);
@@ -133,7 +137,7 @@ function drawCurve() {
 
     canvasCtx.beginPath();
     canvasCtx.moveTo(0, dbToY(freqResponse[0]));
-    for (let i = 0; i < width; ++i) {
+    for (let i = 1; i < freqResponse.length; ++i) {
         canvasCtx.lineTo(i, dbToY(freqResponse[i]));
     }
     canvasCtx.lineWidth = 2;
@@ -142,9 +146,6 @@ function drawCurve() {
 }
 
 function draw() {
-    canvasCtx.font = 'bold 14px Inter';
-    canvasCtx.textAlign = 'center';
-
     canvasCtx.fillStyle = BG_COLOR;
     canvasCtx.fillRect(0, 0, width, height);
 
@@ -152,10 +153,9 @@ function draw() {
     drawHLine(12);
     drawHLine(-12);
 
-    // 100Hz to MAX_FREQ
-    for (let i = 2; i <= LOG_MAX_FREQ; ++i) {
-        drawVLine(i);
-    }
+    drawVLine(2); // 100
+    drawVLine(3); // 1k
+    drawVLine(4); // 10k
 
     drawSpectrum();
     drawCurve();
