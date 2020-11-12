@@ -18,10 +18,8 @@ const height = canvas.height;
 // audio
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-const source = audioCtx.createMediaElementSource(
-    document.getElementById('audio')
-);
+const audioElem = document.getElementById('audio');
+const source = audioCtx.createMediaElementSource(audioElem);
 const eq = new EQ(audioCtx, width);
 
 [
@@ -175,3 +173,4 @@ function resume() {
 
 document.addEventListener('mousedown', resume);
 document.addEventListener('keydown', resume);
+audioElem.addEventListener('play', resume);
