@@ -18,6 +18,8 @@ const height = canvas.height;
 // audio
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const logNyquistFreq = Math.log10(audioCtx.sampleRate / 2);
+
 const audioElem = document.getElementById('audio');
 const source = audioCtx.createMediaElementSource(audioElem);
 const eq = new EQ(audioCtx, width);
@@ -116,7 +118,7 @@ function drawSpectrum() {
     analyser.getByteFrequencyData(freqData);
     canvasCtx.beginPath();
     canvasCtx.moveTo(0, ((255 - freqData[0]) / 255) * height);
-    const binWidth = LOG_MAX_FREQ - Math.log10(freqData.length);
+    const binWidth = logNyquistFreq - Math.log10(freqData.length);
     for (let i = 1; i < freqData.length; ++i) {
         const x =
             ((Math.log10(i) + binWidth - LOG_MIN_FREQ) /
